@@ -1,4 +1,4 @@
-package com.codewithteju.findapp.domain.usecase
+package com.codewithteju.findapp.domain.use_case
 
 import com.codewithteju.findapp.common.ResourceResponse
 import com.codewithteju.findapp.data.remote.dto.toAdvertisement

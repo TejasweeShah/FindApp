@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codewithteju.findapp.common.ResourceResponse
-import com.codewithteju.findapp.domain.usecase.GetAdsUseCase
+import com.codewithteju.findapp.domain.use_case.GetAdsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
