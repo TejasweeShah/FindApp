@@ -1,4 +1,4 @@
-package com.codewithteju.findapp.ui.navigation
+package com.codewithteju.findapp.navigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar

@@ -1,4 +1,4 @@
-package com.codewithteju.findapp.ui.navigation
+package com.codewithteju.findapp.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

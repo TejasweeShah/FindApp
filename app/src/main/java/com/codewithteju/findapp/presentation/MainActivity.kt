@@ -11,9 +11,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.codewithteju.findapp.ui.navigation.AppBottomNavigation
-import com.codewithteju.findapp.ui.navigation.AppNavigationHost
-import com.codewithteju.findapp.ui.navigation.NavItem
+import com.codewithteju.findapp.navigation.AppBottomNavigation
+import com.codewithteju.findapp.navigation.AppNavigationHost
+import com.codewithteju.findapp.navigation.NavItem
 import com.codewithteju.findapp.ui.theme.FindAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
