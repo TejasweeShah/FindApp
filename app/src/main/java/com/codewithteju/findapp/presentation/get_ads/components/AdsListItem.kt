@@ -18,7 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,14 +31,16 @@ import coil.compose.AsyncImage
 import com.codewithteju.findapp.R
 import com.codewithteju.findapp.common.Constants
 import com.codewithteju.findapp.domain.model.Advertisement
+import com.codewithteju.findapp.presentation.favorites.FavoriteAdsEvent
+import com.codewithteju.findapp.presentation.favorites.FavoritesViewModel
 
 @Composable
 fun AdsListItem(
     advertisement: Advertisement,
+    favoritesViewModel: FavoritesViewModel
 ) {
-    var checked by remember {
-        mutableStateOf(false)
-    }
+    var checked by rememberSaveable { mutableStateOf(favoritesViewModel.favoritesState.value.isFavorite) }
+
     Card(
         modifier = Modifier
             .width(200.dp)
@@ -84,6 +86,12 @@ fun AdsListItem(
                 checked = checked,
                 onCheckedChange = {
                     checked = it
+                    if (checked) {
+                        advertisement.isFavorite = true
+                        favoritesViewModel.onEvent(FavoriteAdsEvent.AddFavoriteAd(advertisement))
+                    } else {
+                        favoritesViewModel.onEvent(FavoriteAdsEvent.DeleteFavoriteAd(advertisement))
+                    }
                 }
             ) {
                 val tint by animateColorAsState(if (checked) Color.Red.copy(0.7f) else Color.LightGray)
@@ -92,12 +100,6 @@ fun AdsListItem(
                     contentDescription = "",
                     tint = tint
                 )
-
-                /* if (checked) {
-                    Icon(Icons.Filled.Favorite, contentDescription = "Localized description")
-                } else {
-                    Icon(Icons.Outlined.Favorite, contentDescription = "Localized description")
-                }*/
             }
         }
         Text(

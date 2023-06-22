@@ -20,14 +20,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.codewithteju.findapp.presentation.favorites.FavoritesViewModel
 import com.codewithteju.findapp.presentation.get_ads.components.AdsListItem
 
 
 @Composable
 fun AdsListScreen(
-    adsListViewModel: AdsListViewModel = hiltViewModel()
+    adsListViewModel: AdsListViewModel = hiltViewModel(),
+    favouritesViewModel: FavoritesViewModel = hiltViewModel()
 ) {
     val adsListState by remember { adsListViewModel.adsListState }
+    //val favoritesState = favouritesViewModel.favoritesState.value
+    //val flowColor by favouritesViewModel.color.collectAsState()
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -43,10 +47,7 @@ fun AdsListScreen(
             items(adsListState.ads) { ad ->
                 AdsListItem(
                     advertisement = ad,
-
-                    /*onItemClick = {
-                        Log.i("TAG", "Navigate to Ad Details Screen")
-                    }*/
+                    favouritesViewModel
                 )
             }
         }
