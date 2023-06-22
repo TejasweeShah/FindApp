@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.codewithteju.findapp.presentation.favorites.FavoritesListScreen
 import com.codewithteju.findapp.presentation.get_ads.AdsListScreen
 
 @Composable
@@ -18,7 +19,7 @@ fun AppNavigationHost(navHostController: NavHostController, modifier: Modifier) 
             AdsListScreen()
         }
         composable(NAV_FAV) {
-            //FavoritesScreen()
+            FavoritesListScreen()
         }
     }
 }
