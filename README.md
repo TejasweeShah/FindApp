@@ -12,7 +12,4 @@ Implemented using following libraries and architecture recommended by Google
 
 
 # Screenshots
-
-![Home Screen - Display all Ads](/screenshots/Screenshot 1.jpeg?raw=true "All Ads")
-
-![Favorite Screen - Display all Ads](/screenshots/Screenshot 2.jpeg?raw=true "Favorite Ads")
+<img src = "/screenshots/Screenshot%201.jpeg" width = 350 /> &nbsp;&nbsp;&nbsp;&nbsp; <img src = "/screenshots/Screenshot%202.jpeg" width = 350 /> 
