@@ -8,9 +8,7 @@ import com.codewithteju.findapp.domain.repository.FavoriteRepository
 import com.codewithteju.findapp.domain.use_case.AddFavoriteAdUseCase
 import com.codewithteju.findapp.domain.use_case.DeleteFavoriteAdUseCase
 import com.codewithteju.findapp.domain.use_case.FavoriteUseCases
-import com.codewithteju.findapp.domain.use_case.GetAdByIdUseCase
 import com.codewithteju.findapp.domain.use_case.GetFavoritesUseCase
-import com.codewithteju.findapp.domain.use_case.IsFavoriteUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,9 +41,7 @@ object DatabaseModule {
         return FavoriteUseCases(
             getAds = GetFavoritesUseCase(favoriteRepository),
             deleteAd = DeleteFavoriteAdUseCase(favoriteRepository),
-            insertAd = AddFavoriteAdUseCase(favoriteRepository),
-            checkFavorite = IsFavoriteUseCase(favoriteRepository),
-            getAdByIdUseCase = GetAdByIdUseCase(favoriteRepository)
+            insertAd = AddFavoriteAdUseCase(favoriteRepository)
         )
     }
 

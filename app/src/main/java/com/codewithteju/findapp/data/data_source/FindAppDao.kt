@@ -20,10 +20,4 @@ interface FindAppDao {
     @Delete
     suspend fun deleteAd(adv: Advertisement)
 
-    @Query("SELECT EXISTS (SELECT 1 FROM advertisement WHERE id = :id)")
-    suspend fun isFavorite(id: Int): Boolean
-
-    @Query("SELECT * FROM advertisement WHERE id = :id")
-    suspend fun getAdvById(id: Int): Advertisement?
-
 }

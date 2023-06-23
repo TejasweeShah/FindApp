@@ -21,13 +21,4 @@ class FavoriteRepositoryImpl(
         findAppDao.deleteAd(advertisement)
     }
 
-    override suspend fun isFavorite(id: Int): Boolean {
-        return findAppDao.isFavorite(id)
-    }
-
-    override suspend fun getAdvById(id: Int): Advertisement? {
-        return findAppDao.getAdvById(id)
-    }
-
-
 }

@@ -28,7 +28,6 @@ class FavoritesViewModel @Inject constructor(
 
     private var getFavoritesJob: Job? = null
 
-
     init {
         getAllFavorites()
     }
@@ -44,26 +43,6 @@ class FavoritesViewModel @Inject constructor(
             is FavoriteAdsEvent.DeleteFavoriteAd -> {
                 viewModelScope.launch {
                     favoriteUseCases.deleteAd(event.adv)
-                }
-            }
-
-            is FavoriteAdsEvent.CheckIsFavorite -> {
-                viewModelScope.launch {
-                    _favoritesState.value = favoritesState.value.copy(
-                        isFavorite = favoriteUseCases.checkFavorite(event.id)
-                    )
-                    _color.value = favoriteUseCases.checkFavorite(event.id)
-                }
-            }
-
-            is FavoriteAdsEvent.GetAdvById -> {
-                viewModelScope.launch {
-                    favoriteUseCases.getAdByIdUseCase(event.advId)
-                        ?.also {
-                            _favoritesState.value = favoritesState.value.copy(
-                                isFavorite = true
-                            )
-                        }
                 }
             }
         }

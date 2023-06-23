@@ -11,7 +11,4 @@ interface FavoriteRepository {
 
     suspend fun deleteAd(advertisement: Advertisement)
 
-    suspend fun isFavorite(id: Int): Boolean
-
-    suspend fun getAdvById(id: Int): Advertisement?
 }
