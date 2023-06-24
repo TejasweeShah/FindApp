@@ -30,14 +30,13 @@ import com.codewithteju.findapp.R
 import com.codewithteju.findapp.common.Constants
 import com.codewithteju.findapp.domain.model.Advertisement
 import com.codewithteju.findapp.presentation.favorites.FavoriteAdsEvent
-import com.codewithteju.findapp.presentation.favorites.FavoritesViewModel
+import com.codewithteju.findapp.presentation.get_ads.AdsListViewModel
 
 @Composable
 fun FavListItem(
     advertisement: Advertisement,
-    favoritesViewModel: FavoritesViewModel
+    adsListViewModel: AdsListViewModel
 ) {
-    //var checked by rememberSaveable{ mutableStateOf(favoritesViewModel.favoritesState.value.isFavorite) }
 
     Card(
         modifier = Modifier
@@ -81,23 +80,23 @@ fun FavListItem(
                 )
             }
             IconToggleButton(
-                checked = advertisement.isFavorite,
+                checked = adsListViewModel.isOrNot(advertisement),
                 onCheckedChange = {
-                    advertisement.isFavorite = it
+                    //advertisement.isFavorite = it
+                    adsListViewModel.updateOneItem(advertisement, it)
                     if (it) {
-                        favoritesViewModel.onEvent(FavoriteAdsEvent.AddFavoriteAd(advertisement))
+                        adsListViewModel.onEvent(FavoriteAdsEvent.AddFavoriteAd(advertisement))
                     } else {
-                        favoritesViewModel.onEvent(FavoriteAdsEvent.DeleteFavoriteAd(advertisement))
+                        adsListViewModel.onEvent(FavoriteAdsEvent.DeleteFavoriteAd(advertisement))
                     }
                 }
             ) {
-                val tint by animateColorAsState(if (advertisement.isFavorite) Color.Red.copy(0.7f) else Color.LightGray)
+                val tint by animateColorAsState(if (adsListViewModel.isOrNot(advertisement) ) Color.Red.copy(0.7f) else Color.LightGray)
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = "",
                     tint = tint
                 )
-
 
             }
         }

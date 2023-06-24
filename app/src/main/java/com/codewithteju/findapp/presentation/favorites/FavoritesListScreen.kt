@@ -15,19 +15,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.codewithteju.findapp.presentation.favorites.component.FavListItem
+import com.codewithteju.findapp.presentation.get_ads.AdsListViewModel
 
 @Composable
 fun FavoritesListScreen(
-    favouritesViewModel: FavoritesViewModel = hiltViewModel()
+    adsListViewModel: AdsListViewModel = hiltViewModel()
 ) {
-    val favoritesState = favouritesViewModel.favoritesState.value
-    val flowColor by favouritesViewModel.color.collectAsState()
+    //val favoritesState = adsListViewModel.favoritesState.value
+    val favoritesState by remember { adsListViewModel.favoritesState }
+    //val flowColor by favouritesViewModel.color.collectAsState()
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -43,7 +46,7 @@ fun FavoritesListScreen(
             items(favoritesState.favoriteAds) { ad ->
                 FavListItem(
                     advertisement = ad,
-                    favouritesViewModel,
+                    adsListViewModel,
                 )
             }
         }

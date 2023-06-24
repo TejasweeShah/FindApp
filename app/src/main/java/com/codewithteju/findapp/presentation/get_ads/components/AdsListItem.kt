@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -32,14 +33,15 @@ import com.codewithteju.findapp.R
 import com.codewithteju.findapp.common.Constants
 import com.codewithteju.findapp.domain.model.Advertisement
 import com.codewithteju.findapp.presentation.favorites.FavoriteAdsEvent
-import com.codewithteju.findapp.presentation.favorites.FavoritesViewModel
+import com.codewithteju.findapp.presentation.get_ads.AdsListViewModel
 
 @Composable
 fun AdsListItem(
     advertisement: Advertisement,
-    favoritesViewModel: FavoritesViewModel
+    adsListViewModel: AdsListViewModel
 ) {
-    var checked by rememberSaveable { mutableStateOf(favoritesViewModel.favoritesState.value.isFavorite) }
+    //var checked by rememberSaveable { mutableStateOf(favoritesViewModel.favoritesState.value.isFavorite) }
+    var checked = false
 
     Card(
         modifier = Modifier
@@ -83,18 +85,18 @@ fun AdsListItem(
                 )
             }
             IconToggleButton(
-                checked = checked,
+                checked = adsListViewModel.isOrNot(advertisement),
                 onCheckedChange = {
-                    checked = it
-                    if (checked) {
-                        advertisement.isFavorite = true
-                        favoritesViewModel.onEvent(FavoriteAdsEvent.AddFavoriteAd(advertisement))
+                    //advertisement.isFavorite = it
+                    adsListViewModel.updateOneItem(advertisement, it)
+                    if (it) {
+                        adsListViewModel.onEvent(FavoriteAdsEvent.AddFavoriteAd(advertisement))
                     } else {
-                        favoritesViewModel.onEvent(FavoriteAdsEvent.DeleteFavoriteAd(advertisement))
+                        adsListViewModel.onEvent(FavoriteAdsEvent.DeleteFavoriteAd(advertisement))
                     }
                 }
             ) {
-                val tint by animateColorAsState(if (checked) Color.Red.copy(0.7f) else Color.LightGray)
+                val tint by animateColorAsState(if (adsListViewModel.isOrNot(advertisement)) Color.Red.copy(0.7f) else Color.LightGray)
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = "",
